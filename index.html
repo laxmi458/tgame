@@ -2,35 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>NeoWood MiniGames</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MiniGame Pro - Wood & Neon</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://alwingulla.com/88/tag.min.js" data-zone="YOUR_ZONE_ID" async data-cfasync="false"></script>
 </head>
 <body class="offline-theme">
-    
-    <header class="dashboard">
-        <div class="user-info">
-            <span id="player-name">Player</span>
-            <div class="coin-display">💰 <span id="coin-count">0</span></div>
-        </div>
-        <button id="theme-toggle">Switch to ONLINE</button>
-    </header>
 
-    <main id="app-container">
-        <section id="menu-screen" class="active">
-            <h1 id="game-title">WOODEN TIC-TAC-TOE</h1>
-            <div class="menu-buttons">
-                <button onclick="ui.showScreen('game-setup')">PLAY GAME</button>
-                <button onclick="ui.showScreen('shop-screen')">SHOP</button>
-                <button onclick="ui.showScreen('leaderboard')">RANKING</button>
-                <button class="ad-btn" onclick="ads.showRewardAd()">📺 WATCH AD (+20)</button>
+    <div class="dashboard">
+        <div class="coins-container">💰 <span id="coin-count">0</span></div>
+        <button id="theme-toggle" class="mode-btn">Switch to ONLINE</button>
+    </div>
+
+    <div id="app">
+        
+        <section id="menu-screen" class="screen active">
+            <h1 id="game-title">WOODEN BATTLE</h1>
+            <div class="menu-grid">
+                <button class="main-btn" onclick="ui.showScreen('game-screen'); game.start()">PLAY GAME</button>
+                <button class="main-btn" onclick="ui.showScreen('shop-screen')">🛒 SHOP</button>
+                <button class="main-btn ad-special" onclick="ads.showRewardAd()">📺 WATCH VIDEO (+20)</button>
             </div>
         </section>
 
-        <section id="game-screen">
-            <div class="game-status" id="status-text">Your Turn</div>
-            <div class="grid" id="board">
+        <section id="game-screen" class="screen">
+            <div class="game-header">
+                <span id="status-text">Your Turn (X)</span>
+            </div>
+            <div class="board" id="board">
                 <div class="cell" data-index="0"></div>
                 <div class="cell" data-index="1"></div>
                 <div class="cell" data-index="2"></div>
@@ -41,22 +40,30 @@
                 <div class="cell" data-index="7"></div>
                 <div class="cell" data-index="8"></div>
             </div>
-            <button class="exit-btn" onclick="game.exit()">Quit Game</button>
+            <button class="back-btn" onclick="ui.showScreen('menu-screen')">QUIT</button>
         </section>
 
-        <section id="shop-screen">
-            <h2>COIN SHOP</h2>
-            <div class="shop-item">
-                <span>Neon Skin</span>
-                <button onclick="game.buySkin('neon', 500)">500 💰</button>
+        <section id="shop-screen" class="screen">
+            <h2>MARKETPLACE</h2>
+            <div class="shop-container">
+                <div class="shop-card ad-card">
+                    <p>Watch 3 Ads</p>
+                    <small>Get 100 Coins</small>
+                    <button onclick="ads.watchThreeAds()">WATCH (0/3)</button>
+                </div>
+                <div class="shop-card">
+                    <p>Neon Theme Event</p>
+                    <small>Price: 500 Coins</small>
+                    <button onclick="game.buyItem('neon_event', 500)">BUY EVENT</button>
+                </div>
             </div>
-            <button onclick="ui.showScreen('menu-screen')">Back</button>
+            <button class="back-btn" onclick="ui.showScreen('menu-screen')">BACK</button>
         </section>
-    </main>
 
-    <div id="banner-ad-container"></div>
+    </div>
 
-    <script src="ads.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
+
+    
