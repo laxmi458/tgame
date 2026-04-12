@@ -1,0 +1,39 @@
+const ads = {
+    rewardCooldown: false,
+    zoneId: "YOUR_ZONE_ID", // Change this to your Monetag Zone ID
+
+    init: () => {
+        // Show interstitial ad after 3 seconds of load
+        setTimeout(() => {
+            console.log("Showing Interstitial Ad...");
+            // if(window.show_interstitial) show_interstitial(); 
+        }, 3000);
+    },
+
+    showRewardAd: () => {
+        if(ads.rewardCooldown) {
+            alert("Please wait 30s before next ad.");
+            return;
+        }
+
+        // Simulate Ad Interaction (In production, replace with actual Monetag reward callback)
+        if (typeof show_8874653 === 'function') { 
+            // Real Monetag function call example
+            // show_8874653().then(() => ads.rewardUser());
+        } else {
+            // Mock Reward for testing
+            alert("Ad is playing...");
+            setTimeout(() => ads.rewardUser(), 2000);
+        }
+    },
+
+    rewardUser: () => {
+        state.coins += REWARDS.AD;
+        ui.updateBalance();
+        ads.rewardCooldown = true;
+        setTimeout(() => ads.rewardCooldown = false, 30000);
+        alert("Success! +20 coins added.");
+    }
+};
+
+ads.init();
